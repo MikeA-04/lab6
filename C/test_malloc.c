@@ -29,7 +29,11 @@ void experiment6() {
 
 void experiment5() {
     // malloc a large enough object so that its address starts with 0x7...
-    void *p = malloc(EXP5_LARGE_OBJECT_SIZE); /* TODO 3: increase EXP5_LARGE_OBJECT_SIZE until you find a size large enough */
+    /* TODO 3: increase EXP5_LARGE_OBJECT_SIZE until you find a size large enough */
+    //void *p = malloc(EXP5_LARGE_OBJECT_SIZE);
+    // 40960 resulted in heap allocation
+    // 134480 resulted in mmap allocation
+    void *p = malloc(134480);
     free(p);
     printf("Large object is at %p\n", p);
 }
@@ -133,7 +137,7 @@ void experiment2() {
         //   To free a region of memory, what argument should be passed to free?
         //   Fill in TODO 2 with the correct argument once you've figured it out.
         //   Hint: we're trying to free the object pointed to by pointers[i]
-        free(0 /* TODO 2 */);
+        free(pointers[i]);
 
         // Check to see if the heap has changed
         curr_heap = sbrk(0);
@@ -173,7 +177,8 @@ void experiment1() {
         // Question:
         //   What does malloc return?
         malloc(EXP1_MALLOC_SIZE);
-        curr_heap = NULL /* TODO 1: replace NULL with the correct function to get current heap end */;
+        /* TODO 1: replace NULL with the correct function to get current heap end */
+        curr_heap = sbrk(0);
 
         // Check to see if the heap has changed
         if (curr_heap != prev_heap) {
