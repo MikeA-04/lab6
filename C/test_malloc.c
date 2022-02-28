@@ -23,6 +23,7 @@ void experiment6() {
     // TODO 4: use gdb to find the value of 'i' when the below for loop hits a SEGFAULT
     // Hint: use 'info locals' in gdb
     for(int i=0;i<1000000;i++) {
+        // Went all the way to i = 133,495 out of 1,000,000
         *(p + EXP6_MALLOC_SIZE + i) = 'a';
     }
 }
